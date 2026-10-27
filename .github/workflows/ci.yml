@@ -1,0 +1,41 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Syntax check
+        run: |
+          node --check index.js
+          node --check client.js
+
+      - name: Validate package.json and locale files
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('package.json','utf8'))"
+          node -e "JSON.parse(require('fs').readFileSync('locale/zh.json','utf8'))"
+          node -e "JSON.parse(require('fs').readFileSync('locale/en.json','utf8'))"
+
+      - name: No secrets committed
+        run: |
+          if grep -rIn --exclude-dir=.git -E "LTAI[0-9A-Za-z]{12,}|AKID[0-9A-Za-z]{12,}" .; then
+            echo "::error::疑似硬编码的 AccessKey，请移除后再提交"
+            exit 1
+          fi
+
+      - name: Required files present
+        run: |
+          for f in index.js client.js cordis.patch.yml package.json README.md LICENSE; do
+            test -f "$f" || { echo "::error::缺少 $f"; exit 1; }
+          done
