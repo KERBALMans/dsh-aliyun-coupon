@@ -1,0 +1,70 @@
+{
+  "name": "dsh-aliyun-coupon",
+  "version": "1.3.1",
+  "description": "阿里云云工开物学生专属代金券余额实时查看插件（DeepSeek Harness）：零 Token 消耗、真实浏览器实时抓取账单控制台。 / Live Aliyun student coupon balance viewer for DeepSeek Harness — zero-token, real-time console scrape.",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "aliyun",
+    "coupon",
+    "balance",
+    "student",
+    "billing"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "docs/*.png",
+    "README.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "UPLOAD-GUIDE.md",
+    "REPO-COPY.md",
+    "LICENSE"
+  ],
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "engines": {
+    "node": ">=20.0.0",
+    "dsh": ">=0.2.0-rc.1"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KERBALMans/dsh-aliyun-coupon.git"
+  },
+  "homepage": "https://github.com/KERBALMans/dsh-aliyun-coupon#readme",
+  "bugs": {
+    "url": "https://github.com/KERBALMans/dsh-aliyun-coupon/issues"
+  },
+  "author": "dsh-aliyun-coupon contributors"
+}
