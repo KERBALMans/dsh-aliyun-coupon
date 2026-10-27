@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 使用问题与讨论
+    url: https://github.com/KERBALMans/dsh-aliyun-coupon/discussions
+    about: 安装、配置、登录失败等使用问题请走 Discussions，不要开 issue。
+  - name: 安全问题
+    url: https://github.com/KERBALMans/dsh-aliyun-coupon/security/advisories/new
+    about: 请勿公开披露漏洞，走私密 advisory。
